@@ -33,28 +33,21 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
 
-<!-- MPC: conexión a la BD de firebase, se obtiene de la cuenta firesbase-->
-<script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-        apiKey: "AIzaSyC0XqH0p0bPE29I1LRdV2HZ59bllUiEqgI",
-        authDomain: "tec2021-1795b.firebaseapp.com",
-        databaseURL: "https://tec2021-1795b-default-rtdb.firebaseio.com",
-        projectId: "tec2021-1795b",
-        storageBucket: "tec2021-1795b.appspot.com",
-        messagingSenderId: "86528278955",
-        appId: "1:86528278955:web:f046bc8ac9c05a499652ee",
-        measurementId: "G-FEQR97R2EC"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-</script>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-2x fa-money-check-alt"></i>
+                <h1 class="d-inline mx-3">Gestion de Ventas</h1>
+
+            </a>
+
+        </div>
+    </nav>
     <div class="container-fluid">
-        <div class="row">
+
+        <div class="row mt-5">
             <div class="col-12">
                 <div class="card ">
                     <div class="card-header my-2 text-center">
@@ -86,15 +79,6 @@
             </div>
 
         </div>
-
-        <button class="btn btn-success m-5" onclick="getData()">
-            GET DATA
-        </button>
-        <button class="btn btn-danger m-5" onclick="showData()">
-            SHOW DATA
-        </button>
-        <!-- BEGIN: ESTADO DE CUENTA -->
-
 
         <!-- DMR: js donde está la funcionalidad ADD, REMOVE, UPDATE-->
         <script src="./js/index.js"></script>

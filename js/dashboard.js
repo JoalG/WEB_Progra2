@@ -5,16 +5,47 @@ const rootRef = database.ref('/');
 //
 let sellerData = [];
 
-function getData() {
+/* function getData() {
     // once() method
     rootRef.on('value', (snap) => {
         sellerData = snap.val()[localStorage.ventaIndex];
         console.log(sellerData);
     });
 
+} */
+
+
+function getDataPromise() {
+    return new Promise((resolve, reject) => {
+        rootRef.on('value', (snap) => {
+            resolve(snap.val());
+        });
+    });
 }
 
+
+async function dummy() {
+    await getDataPromise()
+        .then(
+            json => {
+                sellerData = json[localStorage.ventaIndex];
+                showData();
+            }
+        )
+        .catch(error => { console.log(error) });
+    console.log(sellerData);
+}
+
+
+$(document).ready(function() {
+    console.log('ready')
+    dummy();
+});
+
+
+
 function showData() {
+    showUsername();
     showCumplientoDeVentas();
     showCumplimiento();
     showProyectado();
@@ -28,6 +59,11 @@ function showData() {
 /* $(document).ready(function() {
     varGraphic()
 }); */
+
+function showUsername() {
+    let slpName = sellerData.infoResult.data[0].slpName;
+    document.getElementById('username').innerHTML = slpName;
+}
 
 
 function showCumplientoDeVentas() {
@@ -135,7 +171,7 @@ function showCumplimiento() {
     if (percent >= 100) {
         color = "#2ECC71";
     } else if (percent >= 80) {
-        color = "#DFFF00";
+        color = "#FFBA42";
     } else {
         color = "#E74C3C";
     }
@@ -209,7 +245,7 @@ function showProyectado() {
         color = "#2ECC71";
         elemProyectado.classList.add('text-success');
     } else if (percent >= 80) {
-        color = "#DFFF00";
+        color = "#FFBA42";
         elemProyectado.classList.add('text-warning');
     } else {
         color = "#E74C3C";
@@ -327,14 +363,8 @@ function showVentasVsDevoluciones() {
 
     let elemDevoluciones = document.getElementById('devoluciones');
     elemDevoluciones.innerHTML = formatter.format(creditNotes);
+    elemDevoluciones.classList.add('text-danger');
 
-    if (percent >= 100) {
-        elemDevoluciones.classList.add('text-success');
-    } else if (percent >= 80) {
-        elemDevoluciones.classList.add('text-warning');
-    } else {
-        elemDevoluciones.classList.add('text-danger');
-    }
 
 }
 
