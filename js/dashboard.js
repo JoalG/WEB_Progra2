@@ -3,48 +3,209 @@ const database = firebase.database();
 // referencia a la collection test_col para utilizar las funciones sobre esta colección
 const rootRef = database.ref('/');
 //
-let sallerData = [];
+let sellerData = [];
+
+function getData() {
+    // once() method
+    rootRef.on('value', (snap) => {
+        sellerData = snap.val()[0];
+        console.log(sellerData);
+    });
+
+}
+
+function showData() {
+    showCumplientoDeVentas();
+    showCumplimiento();
+    showProyectado();
+}
 
 
-
-
-
-$(document).ready(function() {
+/* $(document).ready(function() {
     varGraphic()
-});
+}); */
 
 
-function varGraphic() {
+function showCumplientoDeVentas() {
+
+    document.getElementById('ventaActual').innerHTML = formatter.format(sellerData.infoResult.data[0].sale);
+    document.getElementById('metaActual').innerHTML = formatter.format(sellerData.infoResult.data[0].budget);
+    document.getElementById('diferenciaActual').innerHTML = formatter.format(sellerData.infoResult.data[0].sale - sellerData.infoResult.data[0].budget);
+
     var ctx = $("#chart-line");
+
+    let weekResult = sellerData.weekResult.data;
+    let sales = [];
+    let budgets = [];
+    let pastMonthSales = [];
+    let pastYearSales = [];
+
+    let sale = 0;
+    let weigth = 0;
+    for (let i = 0; i < weekResult.length; i++) {
+        const week = weekResult[i];
+        sale += week.sale;
+        weigth += week.weekWeight / 100;
+
+        sales.push(sale);
+        budgets.push(sellerData.infoResult.data[0].budget * weigth);
+        pastMonthSales.push(sellerData.infoResult.data[0].pastMonthSale * weigth);
+        pastYearSales.push(sellerData.infoResult.data[0].pastYearSale * weigth);
+    }
+
+
+
     var myLineChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+            labels: ["Semana 1", "Semana 2", "Semana 3", "Semana 4", "Semana 5", "Semana 6"],
             datasets: [{
-                data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                label: "Africa",
-                borderColor: "#458af7",
-                backgroundColor: '#458af7',
+                data: budgets,
+                label: "Meta",
+                borderColor: "#E74C3C",
+                backgroundColor: '#E74C3C',
                 fill: false
             }, {
-                data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
-                label: "Asia",
-                borderColor: "#8e5ea2",
+                data: sales,
+                label: "Venta",
+                borderColor: "#2ECC71",
                 fill: true,
-                backgroundColor: '#8e5ea2'
+                backgroundColor: '#2ECC71'
             }, {
-                data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
-                label: "Europe",
-                borderColor: "#3cba9f",
+                data: pastYearSales,
+                label: "Año anterior",
+                borderColor: "#566573",
                 fill: false,
-                backgroundColor: '#3cba9f'
+                backgroundColor: '#566573'
+            }, {
+                data: pastMonthSales,
+                label: "Mes anterior",
+                borderColor: "#808B96",
+                fill: false,
+                backgroundColor: '#808B96'
             }]
         },
         options: {
             title: {
                 display: true,
-                text: 'World population per region (in millions)'
+                text: 'Cumplimiento de ventas'
+            },
+            scales: {
+
+                yAxes: [{
+                    ticks: {
+                        // Include a dollar sign in the ticks
+                        callback: function(value, index, values) {
+
+                            return value > 1000000 ? '₡' + (value / 1000000).toFixed(0) + 'M' : formatter.format(value);
+                        }
+                    }
+                }]
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(t, d) {
+                        var dstLabel = d.datasets[t.datasetIndex].label;
+                        var yLabel = t.yLabel;
+                        return dstLabel + ': ' + formatter.format(yLabel);
+                    }
+                }
             }
+
+
         }
     });
 }
+
+
+
+function showCumplimiento() {
+
+
+    let sale = sellerData.infoResult.data[0].sale;
+    let budget = sellerData.infoResult.data[0].budget;
+    let percent = ((budget != 0) ? ((sale / budget) * 100) : 0).toFixed(2);
+
+    let color = "";
+    if (percent >= 100) {
+        color = "#2ECC71";
+    } else if (percent >= 80) {
+        color = "#DFFF00";
+    } else {
+        color = "#E74C3C";
+    }
+
+    var optionsRadialChart1 = {
+        chart: {
+            type: "radialBar"
+        },
+
+        series: [percent],
+
+        plotOptions: {
+            radialBar: {
+                hollow: {
+                    margin: 15,
+                    size: "70%"
+                },
+
+                dataLabels: {
+                    showOn: "always",
+                    name: {
+                        offsetY: -10,
+                        show: true,
+                        color: color,
+                        fontSize: "13px"
+                    },
+                    value: {
+                        color: color,
+                        fontSize: "30px",
+                        show: true
+                    }
+                },
+
+
+            }
+        },
+
+        stroke: {
+            lineCap: "round",
+        },
+        labels: ["Progress"],
+        colors: [color]
+    };
+
+    var radialChart1 = new ApexCharts(document.querySelector("#radial-chart-1"), optionsRadialChart1);
+
+    radialChart1.render();
+
+}
+
+function showProyectado() {
+
+    var optionsRadialChart2 = {
+        chart: {
+
+            type: 'radialBar',
+        },
+        series: [65],
+        labels: ['Proyectado']
+    }
+
+    var radialChart2 = new ApexCharts(document.querySelector("#radial-chart-2"), optionsRadialChart2);
+
+    radialChart2.render();
+
+}
+
+
+
+
+
+
+
+const formatter = new Intl.NumberFormat('es-CR', {
+    style: 'currency',
+    currency: 'CRC',
+    minimumFractionDigits: 0
+});

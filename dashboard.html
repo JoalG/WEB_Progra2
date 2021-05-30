@@ -20,6 +20,7 @@
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -60,20 +61,63 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Grafico de barras
+                        <h4>Cumplimiento de ventas</h4>
                     </div>
                     <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col text-success">
+                                <h6>Venta Actual</h6>
+                                <h5 id="ventaActual">₡0</h5>
+                            </div>
+                            <div class="col">
+                                <h6>Meta Actual</h6>
+                                <h5 id="metaActual">₡0</h5>
+                            </div>
+                            <div class="col text-danger">
+                                <h6>Diferencia</h6>
+                                <h5 id="diferenciaActual">₡0</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                </div>
+                            </div> <canvas id="chart-line" width="299" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
+                        </div>
 
                     </div>
                 </div>
             </div>
             <div class="col border">
                 <div class="row border">
-                    <div class="col border">
-                        Cumplimiento
+                    <div class="col col-md-12 col-lg-6 border d-flex">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Cumplimiento</h4>
+                            </div>
+                            <div class="card-body">
+                                <div id="radial-chart-1">
+                                    <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col border">
-                        proyectado
+                    <div class="col col-md-12 col-lg-6 border  d-flex">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Proyectado</h4>
+                            </div>
+                            <div class="card-body">
+                                <div id="radial-chart-2">
+                                    <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row border">
@@ -96,37 +140,18 @@
         </div>
 
     </div>
+
+
+    <button class="btn btn-success m-5" onclick="getData()">
+        GET DATA
+    </button>
+    <button class="btn btn-danger m-5" onclick="showData()">
+        SHOW DATA
+    </button>
+
+
     <!-- DMR: js donde está la funcionalidad ADD, REMOVE, UPDATE-->
     <script src="./js/dashboard.js"></script>
-
-
-
-    <div class="graphic1">
-        <div class="page-content page-container" id="page-content">
-            <div class="padding">
-                <div class="row">
-                    <div class="container-fluid d-flex justify-content-center">
-                        <div class="col-sm-8 col-md-6">
-                            <div class="card">
-                                <div class="card-header">Bar chart</div>
-                                <div class="card-body" style="height: 420px">
-                                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                                        <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                                        </div>
-                                        <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                                        </div>
-                                    </div> <canvas id="chart-line" width="299" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 </html>

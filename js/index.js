@@ -12,7 +12,7 @@ function getData() {
     // once() method
     rootRef.on('value', (snap) => {
         jsonData = snap.val();
-        //console.log(jsonData);
+        console.log(jsonData);
     });
 
 }
