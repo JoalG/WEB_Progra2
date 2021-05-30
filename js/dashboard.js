@@ -155,12 +155,12 @@ function showCumplimiento() {
                         offsetY: -10,
                         show: true,
                         color: color,
-                        fontSize: "13px"
+                        fontSize: "95%"
                     },
                     value: {
                         color: color,
-                        fontSize: "30px",
-                        show: true
+                        show: true,
+                        fontSize: "95%"
                     }
                 },
 
@@ -191,19 +191,24 @@ function showProyectado() {
     let proyected = (advancePercent != 0) ? (sale * 100 / advancePercent) : 0;
     console.log(proyected);
 
-    document.getElementById('proyectado').innerHTML = formatter.format(proyected);
-
 
     let percent = (((budget != 0) ? (proyected / budget) : 0) * 100).toFixed(2);
     console.log(percent);
 
+    let elemProyectado = document.getElementById('proyectado');
+
+    elemProyectado.innerHTML = formatter.format(proyected);
+
     let color = "";
     if (percent >= 100) {
         color = "#2ECC71";
+        elemProyectado.classList.add('text-success');
     } else if (percent >= 80) {
         color = "#DFFF00";
+        elemProyectado.classList.add('text-warning');
     } else {
         color = "#E74C3C";
+        elemProyectado.classList.add('text-danger');
     }
 
 
@@ -228,12 +233,12 @@ function showProyectado() {
                         offsetY: -10,
                         show: true,
                         color: color,
-                        fontSize: "13px"
+                        fontSize: "95%"
                     },
                     value: {
                         color: color,
-                        fontSize: "30px",
-                        show: true
+                        show: true,
+                        fontSize: "95%"
                     }
                 },
 
