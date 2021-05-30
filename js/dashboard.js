@@ -183,14 +183,67 @@ function showCumplimiento() {
 
 function showProyectado() {
 
+
+    let sale = sellerData.infoResult.data[0].sale;
+    let budget = sellerData.infoResult.data[0].budget;
+    let advancePercent = sellerData.infoResult.data[0].monthAdvance;
+
+    let proyected = (advancePercent != 0) ? (sale * 100 / advancePercent) : 0;
+    console.log(proyected);
+    let percent = (((budget != 0) ? (proyected / budget) : 0) * 100).toFixed(2);
+    console.log(percent);
+
+    let color = "";
+    if (percent >= 100) {
+        color = "#2ECC71";
+    } else if (percent >= 80) {
+        color = "#DFFF00";
+    } else {
+        color = "#E74C3C";
+    }
+
+
+
     var optionsRadialChart2 = {
         chart: {
-
-            type: 'radialBar',
+            type: "radialBar"
         },
-        series: [65],
-        labels: ['Proyectado']
-    }
+
+        series: [percent],
+
+        plotOptions: {
+            radialBar: {
+                hollow: {
+                    margin: 15,
+                    size: "70%"
+                },
+
+                dataLabels: {
+                    showOn: "always",
+                    name: {
+                        offsetY: -10,
+                        show: true,
+                        color: color,
+                        fontSize: "13px"
+                    },
+                    value: {
+                        color: color,
+                        fontSize: "30px",
+                        show: true
+                    }
+                },
+
+
+            }
+        },
+
+        stroke: {
+            lineCap: "round",
+        },
+        labels: ["Progress"],
+        colors: [color]
+    };
+
 
     var radialChart2 = new ApexCharts(document.querySelector("#radial-chart-2"), optionsRadialChart2);
 
