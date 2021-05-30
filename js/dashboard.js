@@ -171,7 +171,7 @@ function showCumplimiento() {
         stroke: {
             lineCap: "round",
         },
-        labels: ["Progress"],
+        labels: ["Cumplimiento"],
         colors: [color]
     };
 
@@ -190,6 +190,10 @@ function showProyectado() {
 
     let proyected = (advancePercent != 0) ? (sale * 100 / advancePercent) : 0;
     console.log(proyected);
+
+    document.getElementById('proyectado').innerHTML = formatter.format(proyected);
+
+
     let percent = (((budget != 0) ? (proyected / budget) : 0) * 100).toFixed(2);
     console.log(percent);
 
@@ -240,7 +244,7 @@ function showProyectado() {
         stroke: {
             lineCap: "round",
         },
-        labels: ["Progress"],
+        labels: ["Proyectado"],
         colors: [color]
     };
 

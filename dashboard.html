@@ -60,7 +60,7 @@
             <div class="col border">
 
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-center">
                         <h4>Cumplimiento de ventas</h4>
                     </div>
                     <div class="card-body">
@@ -96,11 +96,11 @@
                 <div class="row border">
                     <div class="col col-md-12 col-lg-6 border d-flex">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header text-center">
                                 <h4>Cumplimiento</h4>
                             </div>
                             <div class="card-body">
-                                <div id="radial-chart-1">
+                                <div id="radial-chart-1" class="mt-4">
                                     <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
                                 </div>
                             </div>
@@ -109,10 +109,11 @@
                     </div>
                     <div class="col col-md-12 col-lg-6 border  d-flex">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header text-center">
                                 <h4>Proyectado</h4>
                             </div>
                             <div class="card-body">
+                                <h4 id="proyectado" class="text-center">₡0</h4>
                                 <div id="radial-chart-2">
                                     <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
                                 </div>
