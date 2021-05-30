@@ -18,6 +18,8 @@ function showData() {
     showCumplientoDeVentas();
     showCumplimiento();
     showProyectado();
+    showPedidosAbiertos();
+    showCotizaciones();
 }
 
 
@@ -189,11 +191,11 @@ function showProyectado() {
     let advancePercent = sellerData.infoResult.data[0].monthAdvance;
 
     let proyected = (advancePercent != 0) ? (sale * 100 / advancePercent) : 0;
-    console.log(proyected);
+    //console.log(proyected);
 
 
     let percent = (((budget != 0) ? (proyected / budget) : 0) * 100).toFixed(2);
-    console.log(percent);
+    //console.log(percent);
 
     let elemProyectado = document.getElementById('proyectado');
 
@@ -257,6 +259,20 @@ function showProyectado() {
     var radialChart2 = new ApexCharts(document.querySelector("#radial-chart-2"), optionsRadialChart2);
 
     radialChart2.render();
+
+}
+
+
+function showPedidosAbiertos() {
+    let salesOrders = sellerData.infoResult.data[0].salesOrders;
+    document.getElementById('pedidosAbiertos').innerHTML = formatter.format(salesOrders);
+
+}
+
+
+function showCotizaciones() {
+    let quotations = sellerData.infoResult.data[0].quotations;
+    document.getElementById('cotizacionesAbiertas').innerHTML = formatter.format(quotations);
 
 }
 

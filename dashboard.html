@@ -57,9 +57,9 @@
 <body>
     <div class="container border">
         <div class="row border">
-            <div class="col border">
-
-                <div class="card">
+            <!-- Cumplimiento de ventas card -->
+            <div class="col col-12 col-lg-6 border d-md-flex">
+                <div class="card col-12">
                     <div class="card-header text-center">
                         <h4>Cumplimiento de ventas</h4>
                     </div>
@@ -78,7 +78,8 @@
                                 <h5 id="diferenciaActual">₡0</h5>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- Grafico de barras-->
+                        <div class="row d-none d-md-block">
                             <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
                                 <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
                                     <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
@@ -92,26 +93,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col col-md-6 border">
+            <div class="col border">
                 <div class="row border">
-                    <div class="col col-md-12 col-lg-6 border d-flex">
+                    <!-- Cumplimiento card -->
+                    <div class="col col-12 col-md-6 border d-flex">
                         <div class="card">
                             <div class="card-header text-center">
                                 <h4>Cumplimiento</h4>
                             </div>
+                            <!-- Grafico radial de cumplimiento -->
                             <div class="card-body">
                                 <div id="radial-chart-1" class="mt-4">
                                     <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="col col-md-12 col-lg-6 border  d-flex">
+                    <!-- Proyectado card -->
+                    <div class="col col-12 col-md-6 border  d-flex">
                         <div class="card">
                             <div class="card-header text-center">
                                 <h4>Proyectado</h4>
                             </div>
+                            <!-- Grafico radial de proyectado -->
                             <div class="card-body">
                                 <h6 id="proyectado" class="text-center">₡0</h6>
                                 <div id="radial-chart-2">
@@ -122,11 +126,44 @@
                     </div>
                 </div>
                 <div class="row border">
-                    <div class="col border">
-                        Pedidos abiertos
+                    <div class="col col-12 col-md-6 border d-flex">
+                        <!-- Pedidos abiertos card -->
+
+                        <div class="card col-12">
+                            <div class="card-header text-center">
+                                <h4>Pedidos abiertos</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h6>Pedidos abiertos</h6>
+                                        <h5 id="pedidosAbiertos">₡0</h5>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="fas fa-3x fa-shopping-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col border">
-                        Cotizaciones abiertas
+                    <div class="colcol-12 col-md-6 border d-flex">
+                        <!-- Cotizaciones abiertas card -->
+                        <div class="card col-12">
+                            <div class="card-header text-center">
+                                <h4>Cotizaciones</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h6>Cotizaciones abiertas</h6>
+                                        <h5 id="cotizacionesAbiertas">₡0</h5>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="fas fa-3x fa-shopping-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
