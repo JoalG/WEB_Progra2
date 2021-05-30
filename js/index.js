@@ -3,7 +3,7 @@ const database = firebase.database();
 // referencia a la collection test_col para utilizar las funciones sobre esta colección
 const rootRef = database.ref('/');
 //
-let jsonData = [];
+let ventas = [];
 
 // se agrega el listener al botón remove
 
@@ -11,8 +11,8 @@ let jsonData = [];
 function getData() {
     // once() method
     rootRef.on('value', (snap) => {
-        jsonData = snap.val();
-        console.log(jsonData);
+        ventas = snap.val();
+        console.log(ventas);
     });
 
 }
@@ -40,7 +40,7 @@ function datatableProperties() {
 function displayData() {
     let tableHtml = '';
 
-    jsonData.forEach((venta, index) => {
+    ventas.forEach((venta, index) => {
         let sale = venta.infoResult.data[0].sale;
         let budget = venta.infoResult.data[0].budget;
 
@@ -63,15 +63,31 @@ function displayData() {
 
         tableHtml += '</td>';
 
-        tableHtml += '<td class= "text-truncate text-center">' + '<button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-right"></i></button>' + '</td>';
+        tableHtml += '<td class= "text-truncate text-center">';
+        tableHtml += '<a href="dashboard.html">';
+        tableHtml += '<button onclick="callDashboard(this)" type="button" class="btn btn-outline-success"><i class="fas fa-arrow-right"></i></button>';
+        tableHtml += '</a>';
+        tableHtml += '</td>';
         tableHtml += '</tr>';
 
     });
 
     document.getElementById('tbodytable1ID').innerHTML = tableHtml;
-    //console.log(tableHtml);
 
 }
+
+
+function callDashboard(elem) {
+    let tr = elem.closest('tr');
+    passValue(tr.getAttribute('saleId'));
+}
+
+function passValue(index) {
+    let ventaIndex = index;
+    localStorage.setItem("ventaIndex", ventaIndex);
+    return false;
+}
+
 
 const formatter = new Intl.NumberFormat('es-CR', {
     style: 'currency',

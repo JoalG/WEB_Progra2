@@ -55,10 +55,10 @@
 </script>
 
 <body>
-    <div class="container border">
-        <div class="row border">
+    <div class="container mt-5 ">
+        <div class="row ">
             <!-- Cumplimiento de ventas card -->
-            <div class="col col-12 col-lg-6 border d-md-flex">
+            <div class="col col-12 col-lg-6  d-md-flex">
                 <div class="card col-12">
                     <div class="card-header text-center">
                         <h4>Cumplimiento de ventas</h4>
@@ -67,15 +67,15 @@
                         <div class="row text-center">
                             <div class="col text-success">
                                 <h6>Venta Actual</h6>
-                                <h5 id="ventaActual">₡0</h5>
+                                <h4 id="ventaActual">₡0</h4>
                             </div>
                             <div class="col">
                                 <h6>Meta Actual</h6>
-                                <h5 id="metaActual">₡0</h5>
+                                <h4 id="metaActual">₡0</h4>
                             </div>
                             <div class="col text-danger">
                                 <h6>Diferencia</h6>
-                                <h5 id="diferenciaActual">₡0</h5>
+                                <h4 id="diferenciaActual">₡0</h4>
                             </div>
                         </div>
                         <!-- Grafico de barras-->
@@ -93,10 +93,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col border">
-                <div class="row border">
+            <div class="col ">
+                <div class="row ">
                     <!-- Cumplimiento card -->
-                    <div class="col col-12 col-md-6 border d-flex">
+                    <div class="col col-12 col-md-6  d-flex">
                         <div class="card">
                             <div class="card-header text-center">
                                 <h4>Cumplimiento</h4>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <!-- Proyectado card -->
-                    <div class="col col-12 col-md-6 border  d-flex">
+                    <div class="col col-12 col-md-6   d-flex">
                         <div class="card">
                             <div class="card-header text-center">
                                 <h4>Proyectado</h4>
@@ -125,8 +125,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row border">
-                    <div class="col col-12 col-md-6 border d-flex">
+                <div class="row mt-3">
+                    <div class="col col-12 col-md-6  d-flex">
                         <!-- Pedidos abiertos card -->
 
                         <div class="card col-12">
@@ -137,7 +137,7 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <h6>Pedidos abiertos</h6>
-                                        <h5 id="pedidosAbiertos">₡0</h5>
+                                        <h4 id="pedidosAbiertos">₡0</h4>
                                     </div>
                                     <div class="col-4">
                                         <i class="fas fa-3x fa-shopping-cart"></i>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="colcol-12 col-md-6 border d-flex">
+                    <div class="colcol-12 col-md-6  d-flex">
                         <!-- Cotizaciones abiertas card -->
                         <div class="card col-12">
                             <div class="card-header text-center">
@@ -156,10 +156,10 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <h6>Cotizaciones abiertas</h6>
-                                        <h5 id="cotizacionesAbiertas">₡0</h5>
+                                        <h4 id="cotizacionesAbiertas">₡0</h4>
                                     </div>
                                     <div class="col-4">
-                                        <i class="fas fa-3x fa-shopping-cart"></i>
+                                        <i class="fas fa-3x fa-file-alt"></i>
                                     </div>
                                 </div>
                             </div>
@@ -168,12 +168,50 @@
                 </div>
             </div>
         </div>
-        <div class="row border">
-            <div class="col border">
-                Acumulado anual
+        <div class="row mt-3">
+            <div class="col ">
+                <!-- Acumulado anual card -->
+
+                <div class="card col-12">
+                    <div class="card-header text-center">
+                        <h4>Acumulado anual</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col">
+                                <h6>Venta</h6>
+                                <h4 id="ventaAnual">₡0</h4>
+                                <h6 id="metaAnual">₡0</h6>
+                            </div>
+                            <div class="col">
+                                <h6>Cumplimiento</h6>
+                                <h4 id="cumplimientoAnual">0%</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="col border">
-                Ventas vs devoluciones
+            <div class="col ">
+                <!-- Ventas vs devoluciones card -->
+                <div class="card col-12">
+                    <div class="card-header text-center">
+                        <h4>Ventas vs. Devoluciones</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col mt-4">
+                                <h4 id="facturacion">₡0</h4>
+                                <h6>Factuaración</h6>
+                            </div>
+                            <div class="col">
+                                <h6 id="devolucionesPercent">0%</h6>
+                                <h4 id="devoluciones">₡0</h4>
+                                <h6>Devoluciones</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

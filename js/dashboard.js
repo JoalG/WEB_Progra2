@@ -8,7 +8,7 @@ let sellerData = [];
 function getData() {
     // once() method
     rootRef.on('value', (snap) => {
-        sellerData = snap.val()[0];
+        sellerData = snap.val()[localStorage.ventaIndex];
         console.log(sellerData);
     });
 
@@ -20,6 +20,8 @@ function showData() {
     showProyectado();
     showPedidosAbiertos();
     showCotizaciones();
+    showAcumuladoAnual();
+    showVentasVsDevoluciones();
 }
 
 
@@ -88,6 +90,7 @@ function showCumplientoDeVentas() {
             }]
         },
         options: {
+
             title: {
                 display: true,
                 text: 'Cumplimiento de ventas'
@@ -276,10 +279,64 @@ function showCotizaciones() {
 
 }
 
+function showAcumuladoAnual() {
+
+    let yearSale = sellerData.infoResult.data[0].yearSale;
+    let yearBudget = sellerData.infoResult.data[0].yearBudget;
+    let percent = ((yearBudget != 0) ? ((yearSale / yearBudget) * 100) : 0).toFixed(2);
+
+
+    //Venta
+
+    document.getElementById('ventaAnual').innerHTML = formatter.format(yearSale);
+    document.getElementById('metaAnual').innerHTML = formatter.format(yearBudget);
+
+
+    //Cumplimiento
+    let elemCumplimientoAnual = document.getElementById('cumplimientoAnual');
+    elemCumplimientoAnual.innerHTML = percent + '%';
+
+    if (percent >= 100) {
+        elemCumplimientoAnual.classList.add('text-success');
+    } else if (percent >= 80) {
+        elemCumplimientoAnual.classList.add('text-warning');
+    } else {
+        elemCumplimientoAnual.classList.add('text-danger');
+    }
 
 
 
+}
 
+
+function showVentasVsDevoluciones() {
+
+    let invoices = sellerData.infoResult.data[0].invoices;
+    let creditNotes = sellerData.infoResult.data[0].creditNotes;
+    let percent = ((invoices != 0) ? ((creditNotes / invoices) * 100) : 0).toFixed(2);
+
+
+    //Facturacion
+
+    document.getElementById('facturacion').innerHTML = formatter.format(invoices);
+
+
+    //Cumplimiento
+
+    document.getElementById('devolucionesPercent').innerHTML = percent + '%';
+
+    let elemDevoluciones = document.getElementById('devoluciones');
+    elemDevoluciones.innerHTML = formatter.format(creditNotes);
+
+    if (percent >= 100) {
+        elemDevoluciones.classList.add('text-success');
+    } else if (percent >= 80) {
+        elemDevoluciones.classList.add('text-warning');
+    } else {
+        elemDevoluciones.classList.add('text-danger');
+    }
+
+}
 
 
 const formatter = new Intl.NumberFormat('es-CR', {
