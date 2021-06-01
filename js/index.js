@@ -74,7 +74,21 @@ function datatableProperties() {
     $('#table1TableID').DataTable({
         "bSort": true,
         "paging": true,
-        "pageLength": 10
+        "pageLength": 10,
+        "language": {
+            "search": "Buscar",
+            "paginate": {
+                "show": "Mostrando",
+                "first": "Primer",
+                "previous": "Anterior",
+                "next": "Siguiente",
+                "last": "Ultimo"
+            },
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+            "infoEmpty": "No hay datos",
+            "lengthMenu": "Mostrando _MENU_ entradas",
+            "emptyTable": "No hay datos por el momento"
+        }
     });
 }
 
