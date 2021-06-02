@@ -124,7 +124,7 @@ function displayData() {
 
         tableHtml += '<td class= "text-truncate text-center">';
         tableHtml += '<a href="dashboard.html">';
-        tableHtml += '<button onclick="callDashboard(this)" type="button" class="btn btn-outline-success"><i class="fas fa-arrow-right"></i></button>';
+        tableHtml += '<button onclick="callDashboard(this)" type="button" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i></button>';
         tableHtml += '</a>';
         tableHtml += '</td>';
         tableHtml += '</tr>';
